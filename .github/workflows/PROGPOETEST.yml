@@ -1,6 +1,6 @@
 # This is a basic workflow that is manually triggered
 
-name: TestPOE
+name: POE
 
 # Controls when the workflow will run
 on:
@@ -31,23 +31,23 @@ jobs:
      # Compiles classes to test 
       - name: compile classes
         working-directory: ./src
-        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./main/java/com/mycompany/st10251759_poe_part2/ST10251759_POE_Part2.java ./main/java/com/mycompany/st10251759_poe_part2/Login.java  "./test/java/com/mycompany/st10251759_poe_part2/LoginTest.java" 
+        run: javac -cp "../testresources/junit-platform-console-standalone-1.6.0.jar" ./main/java/com/mycompany/st10251759_poe_part2/Login.java .//main/java/com/mycompany/st10251759_poe_part2/ST10251759_POE_Part2.java .//main/java/com/mycompany/st10251759_poe_part2/Task.java "./test/java/com/mycompany/st10251759_poe_part2/TaskTest.java" 
 
     # list contents of src to verify that classess compiled 
       - name: List contents of src directory after compile
-        working-directory: ./src/main/java/com/mycompany/st10251759_poe_part2
+        working-directory: ./src//main/java/com/mycompany/st10251759_poe_part2
         run: ls
         
         
        # copy compiled classes to test directory 
       - name : copy compiled classes to testresources directory 
         working-directory: ./src/main/java/com/mycompany/st10251759_poe_part2
-        run: cp -t  "../../../../../test/java/com/mycompany/st10251759_poe_part2/" Login.class ST10251759_POE_Part2.class
+        run: cp -t  "../../../../../test/java/com/mycompany/st10251759_poe_part2/" Login.class ST10251759_POE_Part2.class Task.class
         
         #copy compiled tests 
       - name : copy compiled Test classes to testresources directory 
         working-directory: ./src/test/java/com/mycompany/st10251759_poe_part2
-        run: cp -t  "../../../../../../testresources/" Login.class st10251759_poe_part2.class LoginTest.class
+        run: cp -t  "../../../../../../testresources/" Login.class ST10251759_POE_Part2.class Task.class TaskTest.class
         
         # list contents or directory
       - name: List contents test package
@@ -59,4 +59,4 @@ jobs:
         working-directory: ./src/test/java
         run: |
          ls
-         java -jar  "../../../testresources/junit-platform-console-standalone-1.6.0.jar" -cp "." --select-class com.mycompany.st10251759_poe_part2.LoginTest  
+         java -jar  "../../../testresources/junit-platform-console-standalone-1.6.0.jar" -cp "." --select-class com.mycompany.st10251759_poe_part2.TaskTest  
